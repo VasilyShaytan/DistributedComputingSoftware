@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-md btn-danger btn-block" name="registration"
+                type="Submit">Logout</button>
+    </form>
+    <br>
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span th:utext="${userName}"></span>
+            </div>
+
+            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+        </div>
+    </div>
+    <br>
+    <a href="#" th:href="@{/user/new}">New User Order</a>
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(userorders_th)}">
+            <table class="table table-bordered table-hover horizontal-align">
+                <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th style="width: 20%">UserId</th>
+                    <th style="width: 20%">Amount</th>
+                    <th style="width: 20%">StatusMOrder</th>
+                    <th style="width: 20%">StatusPPayOrder</th>
+                    <th style="width: 20%">StatusFullPayOrder</th>
+                    <!--<a th:href="@{'/sort/{sortDate}' (sortDate = 'ASC')}"><i class="fa fa-chevron-circle-up"></i></a>-->
+                    <!--<a th:href="@{'/sort/{sortDate}' (sortDate = 'DESC')}"><i class="fa fa-chevron-circle-down"></i></a>-->
+                    </th>
+                    <th style="width: 5%">Edit</th>
+                    <th style="width: 5%">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="userorder : ${userorders_th}">
+                    <td th:text="${userorder.userOrderId}" style="text-align: center">#</td>
+                    <td th:text="${userorder.userId}">UserId</td>
+                    <td th:text="${userorder.amount}">Amount</td>
+                    <td th:text="${userorder.statusMOrder}">StatusMOrder</td>
+                    <td th:text="${userorder.statusPPayOrder}">StatusPPayOrder</td>
+                    <td th:text="${userorder.statusFullPayOrder}">StatusFullPayOrder</td>
+                    <td style="text-align: center"><a th:href="@{'/user/edit/{id}'(id=${userorder.userOrderId})}"><i class="fa fa-edit" style="font-size:20px"></i></a></td>
+                    <td style="text-align: center"><a th:href="@{'/user/delete/{id}'(id=${userorder.userOrderId})}"><i class="fa fa-trash" style="font-size:20px"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+
+    <!--
+    <form th:action="" method="get">
+        <select multiple><option>Option</option>
+            <option>Textarea</option>
+            <option>Label</option>
+            <option>Fieldset</option><
+            <option>Legend</option></select>
+
+    </form>
+    -->
+
+<!--
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span th:utext="${userName}"></span>
+            </div>
+            <div class="panel-body">
+                <img th:src="@{/images/beer.jpg}" class="img-responsive center-block" width="400" height="400" alt="Beer" />
+            </div>
+            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+        </div>
+    </div>
+-->
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="container">
+        <form class="form-horizontal" th:object="${client_th}" th:action="@{/update}" name="edit_form" id="edit_form"
+              method="post" role="form">
+            <div class="form-group">
+                <input type="hidden" id="id" th:name="id" th:value="*{id}"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="login" th:name="login" th:value="*{login}" maxlength="100"/>
+                <input type="text" class="form-control" id="password" th:name="password" th:value="*{password}" maxlength="100"/>
+                <input type="text" class="form-control" id="name" th:name="name" th:value="*{name}" maxlength="100"/>
+                <input type="text" class="form-control" id="surname" th:name="surname" th:value="*{surname}" maxlength="100"/>
+                <input type="text" class="form-control" id="roleid" th:name="roleid" th:value="*{roleId}" maxlength="100"/>
+                <input type="text" class="form-control" id="money" th:name="money" th:value="*{money}" maxlength="100"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
